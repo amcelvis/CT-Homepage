@@ -1,36 +1,37 @@
 Section,Section Sort,Dashboard Name,Description,URL,Status,Owner,Sort Order
-Inventory,1,Agent Inventory,Days on hand and aging buckets by SKU and country,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/AgentInventory?:iid=2,,,1
-Inventory,1,Hub Inventory,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/HubInventory?:iid=2,,,2
-Inventory,1,Availability by Country,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryStockAllocations?:iid=2,NEW,,3
-Inventory,1,Item Deep-Dive,Aging stock flagged for action,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ItemDeep-Dive?:iid=2,,,4
-Inventory,1,Inventory Valuation,Stock value by location and category,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ExecutiveSummary?:iid=2,,,5
-Products,2,SHS Kit Performance,Sales and field performance by kit configuration,https://YOUR-SERVER/#/views/REPLACE,,,1
-Products,2,BOM & Component Tracker,Bill of materials and component sourcing status,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/SalesProductDescription?:iid=2,,,2
-Products,2,Product Quality & Returns,Return rates and failure modes by product,https://YOUR-SERVER/#/views/REPLACE,,,3
-Products,2,New Product Pipeline,Launch readiness by market,https://YOUR-SERVER/#/views/REPLACE,,,4
-Products,2,Warranty Claims,Claims volume and resolution time,https://YOUR-SERVER/#/views/REPLACE,,,5
-Freight,3,Shipment Tracker - Sea & Air,Container and air freight in transit,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,,1
-Freight,3,Freight Costs Analysis,Cost trends by lane and mode,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,,2
-Freight,3,Customs Clearance Status,Clearance pipeline and delays by port,https://YOUR-SERVER/#/views/REPLACE,DELAY,,3
-Freight,3,Carrier Performance,On-time performance by carrier,https://YOUR-SERVER/#/views/REPLACE,,,4
-Freight,3,Landed Cost Analysis,Full landed cost breakdown by SKU,https://YOUR-SERVER/#/views/REPLACE,,,5
-Warehouse,4,Inbound / Outbound Volumes,Daily throughput by hub,https://YOUR-SERVER/#/views/REPLACE,,,1
-Warehouse,4,Inventory Scorecard,Order cycle time vs SLA,https://YOUR-SERVER/#/views/REPLACE,,,2
-Warehouse,4,Space Utilisation,Capacity used by warehouse,https://YOUR-SERVER/#/views/REPLACE,,,3
-Warehouse,4,Warehouse Health,Inventory accuracy by location,https://YOUR-SERVER/#/views/REPLACE,,,4
-Warehouse,4,,,,,,5
+Inventory,1,Inventory Valuation,Stock value by location and category,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ExecutiveSummary?:iid=2,,Olusola,1
+Inventory,1,Availability by Country,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryStockAllocations?:iid=2,,Olusola,2
+Inventory,1,Agent Inventory,Inventory held by contractors,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/AgentInventory?:iid=2,,Olusola,3
+Inventory,1,Hub Inventory,Inventory held by warehouses and POS,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/HubInventory?:iid=2,,Olusola,4
+Inventory,1,Item Deep-Dive,"Individual item visibility across hubs, shipments, sales",https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ItemDeep-Dive?:iid=2,,Olusola,5
+Inventory,1,Stock-Level Benchmark,stock position across time,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Stock-LevelBenchmark?:iid=1,,Olusola,6
+Inventory,1,Missing Inventory,"Inventory at ""nowhere"" locations",,,Olusola,7
+Logistics,2,In-Country Logistics,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryLogistics?:iid=2,,Wesley,1
+Logistics,2,Logistics Detailed,,,,Wesley,2
+Logistics,2,Reshuffles,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Inter-CountryReshuffles?:iid=3,,Wesley,3
+Products,3,BOM & Component Tracker,Bill of materials and component sourcing status,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/SalesProductDescription?:iid=2,,Joseph,1
+Products,3,Product Quality & Returns,Return rates and failure modes by product,,,Joseph,2
+Products,3,Repossessions,,https://10ay.online.tableau.com/#/site/fnxintl/views/RepossessionReport/Summaryforrepossessed?:iid=1,,Joseph,3
+Products,3,Warranty Claims,Claims volume and resolution time,,,Joseph,4
+Freight,3,Shipment Tracker - Sea & Air,Container and air freight in transit,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,Alice,1
+Freight,3,Freight Costs Analysis,Cost trends by lane and mode,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,Alice,2
+Freight,3,Customs Clearance Status,Clearance pipeline and delays by port,,Coming Soon,Alice,3
+Freight,3,Carrier Performance,On-time performance by carrier,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,Alice,4
+Freight,3,Landed Cost Analysis,Full landed cost breakdown by SKU,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,Alice,5
+Warehouse,4,Inbound / Outbound Volumes,Daily throughput by hub,,,Olusola,1
+Warehouse,4,Inventory Scorecard,Order cycle time vs SLA,,,Olusola,2
+Warehouse,4,Space Utilisation,Capacity used by warehouse,,,Olusola,3
+Warehouse,4,Warehouse Health,Inventory accuracy by location,,,Olusola,4
+Warehouse,4,,,,,Olusola,5
 Tech Center,5,Throughput,TAT by fault type and center,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/TechThroughput?:iid=3,,,1
-Tech Center,5,Fault Categories by Product,Top failure modes by product line,https://YOUR-SERVER/#/views/REPLACE,,,2
-Tech Center,5,Spare Parts Consumption,Parts usage vs stock,https://YOUR-SERVER/#/views/REPLACE,,,3
-Tech Center,5,Refurbishment Output,Units refurbished per week,https://YOUR-SERVER/#/views/REPLACE,,,4
-Tech Center,5,Swap Stock Levels,Swap pool availability by country,https://YOUR-SERVER/#/views/REPLACE,,,5
-Sales,6,Sales vs Supply Plan,Demand vs supply alignment,https://YOUR-SERVER/#/views/REPLACE,,,1
-Sales,6,Demand Forecast Accuracy,Forecast vs actual by market,https://YOUR-SERVER/#/views/REPLACE,,,2
-Sales,6,Country Sell-Through,Sell-through rates by country and channel,https://YOUR-SERVER/#/views/REPLACE,,,3
-Sales,6,Stock-Out Impact on Sales,Lost sales attributable to stock-outs,https://YOUR-SERVER/#/views/REPLACE,NEW,,4
-Sales,6,Channel Performance,Performance by sales channel,https://YOUR-SERVER/#/views/REPLACE,,,5
-Operations,7,S&OP Scorecard,Monthly S&OP KPIs,https://YOUR-SERVER/#/views/REPLACE,,,1
-Operations,7,Country Ops KPIs,Operational KPIs by country,https://YOUR-SERVER/#/views/REPLACE,,,2
-Operations,7,Last-Mile Delivery SLA,Delivery performance to customer,https://YOUR-SERVER/#/views/REPLACE,,,3
-Operations,7,Open Issues & Escalations,Active escalations and owners,https://YOUR-SERVER/#/views/REPLACE,,,4
-S&OP,8,S&OP Scorecard,Monthly S&OP KPIs,https://YOUR-SERVER/#/views/REPLACE,,,1
+Tech Center,5,Fault Categories by Product,Top failure modes by product line,,,,2
+Tech Center,5,Spare Parts Consumption,Parts usage vs stock,,,,3
+Tech Center,5,Refurbishment Output,Units refurbished per week,,,,4
+Tech Center,5,Swap Stock Levels,Swap pool availability by country,,,,5
+Sales,6,Sales vs Supply Plan,Demand vs supply alignment,,,,1
+Sales,6,Demand Forecast Accuracy,Forecast vs actual by market,,,,2
+Sales,6,Country Sell-Through,Sell-through rates by country and channel,,,,3
+Sales,6,Stock-Out Impact on Sales,Lost sales attributable to stock-outs,,,,4
+Sales,6,Channel Performance,Performance by sales channel,,,,5
+Operations,7,Country Ops KPIs,Operational KPIs by country,https://10ay.online.tableau.com/#/site/fnxintl/views/OperationalKPIs/OperationsKPIs,,,1
+S&OP,8,S&OP Scorecard,Monthly S&OP KPIs,https://10ay.online.tableau.com/#/site/fnxintl/views/SOPScorecard/SOPScorecard,,,1
