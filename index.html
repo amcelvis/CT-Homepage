@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supply Chain Control Tower — Home (Design Mockup)</title>
+<style>
+  :root{
+    --purple:#5C1954;
+    --purple-dark:#43103D;
+    --purple-tint:#F4EDF3;
+    --yellow:#FDD000;
+    --red:#E4003B;
+    --ink:#231F20;
+    --grey:#6E6873;
+    --line:#E6E1E6;
+    --bg:#F6F4F7;
+    --card:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    padding:24px;
+  }
+  .canvas{max-width:1600px;margin:0 auto;}
+
+  /* ===== TOP BANNER ===== */
+  .banner{
+    background:var(--purple);
+    color:#fff;
+    border-radius:10px 10px 0 0;
+    padding:22px 32px 0 32px;
+  }
+  .banner-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{
+    width:42px;height:42px;border-radius:8px;
+    background:var(--yellow);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:var(--purple);font-size:20px;letter-spacing:-1px;
+  }
+  .title h1{font-size:24px;font-weight:700;letter-spacing:.2px;}
+  .title p{font-size:12.5px;color:#D9C9D6;margin-top:2px;}
+  .meta{text-align:right;font-size:12px;color:#D9C9D6;line-height:1.5;}
+  .meta b{color:var(--yellow);font-weight:600;}
+
+  /* KPI strip */
+  .kpis{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:rgba(255,255,255,.14);
+    border-radius:8px 8px 0 0;overflow:hidden;
+    margin-top:20px;
+  }
+  .kpi{background:var(--purple-dark);padding:14px 20px;}
+  .kpi .label{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:#C5AEC1;}
+  .kpi .value{font-size:24px;font-weight:700;margin-top:4px;color:#fff;}
+  .kpi .delta{font-size:11.5px;margin-top:2px;}
+  .up{color:#9BE8A8;} .down{color:#FF8AA6;}
+
+  /* ===== BODY GRID ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:none;
+    border-radius:0 0 10px 10px;
+    padding:24px 32px 28px 32px;
+  }
+  @media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;}.kpis{grid-template-columns:repeat(2,1fr);}}
+
+  .section{
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--card);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .section-head{
+    padding:14px 16px 12px 16px;
+    border-bottom:3px solid var(--yellow);
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+  }
+  .section-head h2{
+    font-size:14px;font-weight:700;color:var(--purple);
+    text-transform:uppercase;letter-spacing:1px;
+    display:flex;align-items:center;gap:9px;
+  }
+  .glyph{
+    width:26px;height:26px;border-radius:6px;
+    background:var(--purple-tint);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:var(--purple);
+  }
+  .count{
+    font-size:10.5px;font-weight:600;color:var(--grey);
+    background:var(--bg);border:1px solid var(--line);
+    border-radius:20px;padding:2px 8px;white-space:nowrap;
+  }
+  .links{list-style:none;padding:6px 0;flex:1;}
+  .links li a{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:9px 16px;
+    font-size:13px;color:var(--ink);text-decoration:none;
+    border-left:3px solid transparent;
+    transition:background .12s,border-color .12s;
+  }
+  .links li a:hover,.links li a:focus-visible{
+    background:var(--purple-tint);
+    border-left-color:var(--purple);
+    outline:none;
+  }
+  .links li a .arrow{color:var(--purple);opacity:0;font-size:12px;transition:opacity .12s;}
+  .links li a:hover .arrow,.links li a:focus-visible .arrow{opacity:1;}
+  .links li a .flag{
+    font-size:9.5px;font-weight:700;color:#fff;background:var(--red);
+    border-radius:3px;padding:1px 5px;margin-left:8px;letter-spacing:.5px;
+  }
+  .more{
+    padding:8px 16px 12px 16px;
+  }
+  .more a{font-size:11.5px;color:var(--grey);text-decoration:none;}
+  .more a:hover{color:var(--purple);text-decoration:underline;}
+
+  /* footer */
+  .footer{
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    padding:14px 6px 0 6px;font-size:11.5px;color:var(--grey);
+  }
+  .footer a{color:var(--purple);font-weight:600;text-decoration:none;}
+  .footer a:hover{text-decoration:underline;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- BANNER -->
+  <header class="banner">
+    <div class="banner-row">
+      <div class="brand">
+        <div class="logo">IE</div>
+        <div class="title">
+          <h1>Supply Chain Control Tower</h1>
+          <p>One home for every supply chain dashboard · 12 countries</p>
+        </div>
+      </div>
+      <div class="meta">
+        Data refreshed <b>Today 06:00 EAT</b><br>
+        Owner: Group Supply Chain · <span style="color:#fff">supplychain@igniteaccess.com</span>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="label">OTIF — Last 30 Days</div><div class="value">94.2%</div><div class="delta up">▲ 1.1 pts vs prior</div></div>
+      <div class="kpi"><div class="label">Inventory Value</div><div class="value">$18.4M</div><div class="delta down">▼ 2.3% vs plan</div></div>
+      <div class="kpi"><div class="label">Open POs</div><div class="value">312</div><div class="delta up">▲ 26 this week</div></div>
+      <div class="kpi"><div class="label">Containers In Transit</div><div class="value">47</div><div class="delta">8 arriving this week</div></div>
+    </div>
+  </header>
+
+  <!-- SECTION GRID -->
+  <main class="grid">
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">▦</span>Inventory</h2><span class="count">7 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">Stock Aging &amp; DOH <span class="arrow">→</span></a></li>
+        <li><a href="#">SKU Availability by Country <span class="arrow">→</span></a></li>
+        <li><a href="#">Reorder Alerts <span class="flag">3 NEW</span> <span class="arrow">→</span></a></li>
+        <li><a href="#">Slow-Moving &amp; Obsolete Stock <span class="arrow">→</span></a></li>
+        <li><a href="#">Inventory Valuation <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 7 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">◉</span>Products</h2><span class="count">6 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">SHS Kit Performance <span class="arrow">→</span></a></li>
+        <li><a href="#">BOM &amp; Component Tracker <span class="arrow">→</span></a></li>
+        <li><a href="#">Product Quality &amp; Returns <span class="arrow">→</span></a></li>
+        <li><a href="#">New Product Pipeline <span class="arrow">→</span></a></li>
+        <li><a href="#">Warranty Claims <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 6 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">⛟</span>Freight</h2><span class="count">6 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">Shipment Tracker — Sea &amp; Air <span class="arrow">→</span></a></li>
+        <li><a href="#">Freight Cost per Unit <span class="arrow">→</span></a></li>
+        <li><a href="#">Customs Clearance Status <span class="flag">DELAY</span> <span class="arrow">→</span></a></li>
+        <li><a href="#">Carrier Performance <span class="arrow">→</span></a></li>
+        <li><a href="#">Landed Cost Analysis <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 6 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">⌂</span>Warehouse</h2><span class="count">5 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">Inbound / Outbound Volumes <span class="arrow">→</span></a></li>
+        <li><a href="#">Pick &amp; Dispatch SLA <span class="arrow">→</span></a></li>
+        <li><a href="#">Space Utilisation <span class="arrow">→</span></a></li>
+        <li><a href="#">Cycle Count Accuracy <span class="arrow">→</span></a></li>
+        <li><a href="#">Hub Network Map <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 5 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">⚙</span>Tech Center</h2><span class="count">5 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">Repair Turnaround Time <span class="arrow">→</span></a></li>
+        <li><a href="#">Fault Categories by Product <span class="arrow">→</span></a></li>
+        <li><a href="#">Spare Parts Consumption <span class="arrow">→</span></a></li>
+        <li><a href="#">Refurbishment Output <span class="arrow">→</span></a></li>
+        <li><a href="#">Swap Stock Levels <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 5 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">◔</span>Sales</h2><span class="count">8 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">Sales vs Supply Plan <span class="arrow">→</span></a></li>
+        <li><a href="#">Demand Forecast Accuracy <span class="arrow">→</span></a></li>
+        <li><a href="#">Country Sell-Through <span class="arrow">→</span></a></li>
+        <li><a href="#">Stock-Out Impact on Sales <span class="flag">2 NEW</span> <span class="arrow">→</span></a></li>
+        <li><a href="#">Channel Performance <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 8 →</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2><span class="glyph">⬡</span>Operations</h2><span class="count">6 dashboards</span></div>
+      <ul class="links">
+        <li><a href="#">S&amp;OP Scorecard <span class="arrow">→</span></a></li>
+        <li><a href="#">Country Ops KPIs <span class="arrow">→</span></a></li>
+        <li><a href="#">Last-Mile Delivery SLA <span class="arrow">→</span></a></li>
+        <li><a href="#">Open Issues &amp; Escalations <span class="arrow">→</span></a></li>
+        <li><a href="#">Cost-to-Serve <span class="arrow">→</span></a></li>
+      </ul>
+      <div class="more"><a href="#">View all 6 →</a></div>
+    </section>
+
+    <!-- 8th tile: help / governance -->
+    <section class="section" style="background:var(--purple-tint);border-style:dashed;">
+      <div class="section-head" style="border-bottom-color:var(--purple);"><h2><span class="glyph">＋</span>Need a dashboard?</h2></div>
+      <div style="padding:14px 16px;font-size:12.5px;color:var(--grey);line-height:1.6;flex:1;">
+        Can't find what you need, or built something new?
+        Register it in the <b style="color:var(--purple)">Dashboard Registry</b> and it appears here automatically on the next refresh — no redesign needed.
+        <br><br>
+        <a href="#" style="color:var(--purple);font-weight:700;text-decoration:none;">Open the registry →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Bookmark this page — it is the only link you need. All dashboards open in a new tab.</span>
+    <span>Issues or access requests: <a href="#">supplychain@igniteaccess.com</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
