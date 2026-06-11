@@ -1,37 +1,44 @@
 Section,Section Sort,Dashboard Name,Description,URL,Status,Owner,Sort Order
 Inventory,1,Inventory Valuation,Stock value by location and category,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ExecutiveSummary?:iid=2,,Olusola,1
 Inventory,1,Availability by Country,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryStockAllocations?:iid=2,,Olusola,2
-Inventory,1,Agent Inventory,Inventory held by contractors,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/AgentInventory?:iid=2,,Olusola,3
-Inventory,1,Hub Inventory,Inventory held by warehouses and POS,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/HubInventory?:iid=2,,Olusola,4
-Inventory,1,Item Deep-Dive,"Individual item visibility across hubs, shipments, sales",https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ItemDeep-Dive?:iid=2,,Olusola,5
-Inventory,1,Stock-Level Benchmark,stock position across time,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Stock-LevelBenchmark?:iid=1,,Olusola,6
-Inventory,1,Missing Inventory,"Inventory at ""nowhere"" locations",,,Olusola,7
+Inventory,1,Agent Inventory,Inventory held by contractors,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Inventory_Agents?:iid=1,,Olusola,3
+Inventory,1,Agent Inventory Audit,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/agent_audit?:iid=1,,Olusola,4
+Inventory,1,Hub Inventory,Inventory held by warehouses and POS,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Inventory_Hubs?:iid=1,,Olusola,5
+Inventory,1,Item Deep-Dive,"Individual item visibility across hubs, shipments, sales",https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ItemDeep-Dive?:iid=2,,Olusola,6
+Inventory,1,Stock-Level Benchmark,stock position across time,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Stock-LevelBenchmark?:iid=1,,Olusola,7
+Inventory,1,Missing Inventory,"Inventory at ""nowhere"" locations",https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/NowhereItems?:iid=1,,Olusola,8
 Logistics,2,In-Country Logistics,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryLogistics?:iid=2,,Wesley,1
-Logistics,2,Logistics Detailed,,,,Wesley,2
+Logistics,2,Logistics Detailed,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryLogistics-Detailed?:iid=1,,Wesley,2
 Logistics,2,Reshuffles,,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/Inter-CountryReshuffles?:iid=3,,Wesley,3
-Products,3,BOM & Component Tracker,Bill of materials and component sourcing status,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/SalesProductDescription?:iid=2,,Joseph,1
-Products,3,Product Quality & Returns,Return rates and failure modes by product,,,Joseph,2
-Products,3,Repossessions,,https://10ay.online.tableau.com/#/site/fnxintl/views/RepossessionReport/Summaryforrepossessed?:iid=1,,Joseph,3
-Products,3,Warranty Claims,Claims volume and resolution time,,,Joseph,4
+Products,3,"BOM & Components (part_numbers, pid)",Bill of materials and component sourcing status,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/SalesProductDescription?:iid=2,,Joseph,1
+Products,3,Kitting (Package Production),,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/KittingPackageProduction?:iid=1,,,2
+Products,3,Product Quality & Returns,Return rates and failure modes by product,https://10ay.online.tableau.com/#/site/fnxintl/views/Productperformancereport/MonthlyCummulatives?:iid=2,,Joseph,3
+Products,3,False Swaps,,https://10ay.online.tableau.com/#/site/fnxintl/views/Productperformancereport/FalseSwapsummary?:iid=2,,,4
+Products,3,Repossessions,,https://10ay.online.tableau.com/#/site/fnxintl/views/RepossessionReport/Summaryforrepossessed?:iid=1,,Joseph,5
+Products,3,Damaged & Unrepairable,,https://10ay.online.tableau.com/#/site/fnxintl/views/Productperformancereport/UnrepairableSummary?:iid=2,,Joseph,6
+Products,3,Warranty Status,,https://10ay.online.tableau.com/#/site/fnxintl/views/Productperformancereport/suppliercustomerwarrantystatus?:iid=2,,Joseph,7
+Products,3,Warranty Claims,Claims volume and resolution time,https://10ay.online.tableau.com/#/site/fnxintl/views/SFR-Test/Overview?:iid=1,,Joseph,8
 Freight,3,Shipment Tracker - Sea & Air,Container and air freight in transit,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,Alice,1
 Freight,3,Freight Costs Analysis,Cost trends by lane and mode,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,Alice,2
-Freight,3,Customs Clearance Status,Clearance pipeline and delays by port,,Coming Soon,Alice,3
+Freight,3,Pending Shipments,Clearance pipeline and delays by port,,Coming Soon,Alice,3
 Freight,3,Carrier Performance,On-time performance by carrier,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,Alice,4
 Freight,3,Landed Cost Analysis,Full landed cost breakdown by SKU,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,Alice,5
-Warehouse,4,Inbound / Outbound Volumes,Daily throughput by hub,,,Olusola,1
-Warehouse,4,Inventory Scorecard,Order cycle time vs SLA,,,Olusola,2
-Warehouse,4,Space Utilisation,Capacity used by warehouse,,,Olusola,3
-Warehouse,4,Warehouse Health,Inventory accuracy by location,,,Olusola,4
-Warehouse,4,,,,,Olusola,5
-Tech Center,5,Throughput,TAT by fault type and center,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/TechThroughput?:iid=3,,,1
-Tech Center,5,Fault Categories by Product,Top failure modes by product line,,,,2
-Tech Center,5,Spare Parts Consumption,Parts usage vs stock,,,,3
-Tech Center,5,Refurbishment Output,Units refurbished per week,,,,4
-Tech Center,5,Swap Stock Levels,Swap pool availability by country,,,,5
-Sales,6,Sales vs Supply Plan,Demand vs supply alignment,,,,1
-Sales,6,Demand Forecast Accuracy,Forecast vs actual by market,,,,2
-Sales,6,Country Sell-Through,Sell-through rates by country and channel,,,,3
-Sales,6,Stock-Out Impact on Sales,Lost sales attributable to stock-outs,,,,4
-Sales,6,Channel Performance,Performance by sales channel,,,,5
+Warehouse,4,Inbound Volumes,Daily throughput by hub,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/InboundInventory,New,Olusola,1
+Warehouse,4,Outbound Volumes,Daily throughput by hub,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/OutboundInventory?:iid=1,New,Olusola,2
+Warehouse,4,Inventory Scorecard,Order cycle time vs SLA,https://10ay.online.tableau.com/#/site/fnxintl/views/2_InventoryScorecard/InventoryScorecard,,Olusola,3
+Warehouse,4,Space Utilisation,Capacity used by warehouse,https://10ay.online.tableau.com/#/site/fnxintl/views/WarehouseCapacitySimulation/SpaceSimulation?:iid=1,New,Olusola,4
+Warehouse,4,Warehouse Health,Warehouse Compliance,https://10ay.online.tableau.com/#/site/fnxintl/views/WarehouseHealthCheck/Summary?:iid=1,,Olusola,5
+Warehouse,4,,,,,Olusola,6
+Tech Center,5,Throughput,TAT by fault type and center,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/TechThroughput?:iid=3,,Kolade,1
+Tech Center,5,Backlog,Units refurbished per week,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/BacklogReduction?:iid=1,,Kolade,2
+Tech Center,5,Spare Parts Consumption,Parts usage vs stock,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/SparesConsumption?:iid=1,,Kolade,3
+Tech Center,5,Swap Stock Levels,Swap pool availability by country,,,Kolade,4
+Tech Center,5,System Charge,,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/PowerSystemChargeStatus?:iid=1,,Kolade,5
+Tech Center,5,"""Rotting"" Batteries",,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/RottingBatterySerials?:iid=1,,Kolade,6
+Tech Center,5,E-Waste Generation,,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/E-wasteProduced?:iid=1,,Kolade,7
+Tech Center,5,E-Waste Disposal,,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/E-wasteDisposed?:iid=1,,Kolade,8
+S&OP,6,Product Sales,Demand vs supply alignment,https://10ay.online.tableau.com/#/site/fnxintl/views/OperationalKPIs/UnitsSold_ProductLevel?:iid=1,,Arnold,1
+S&OP,6,Demand Planning,Forecast vs actual by market,,Coming Soon,Arnold,2
+S&OP,6,Order Fulfilment,Performance by sales channel,,Coming Soon,Arnold,3
+S&OP,6,S&OP Scorecard,Monthly S&OP KPIs,https://10ay.online.tableau.com/#/site/fnxintl/views/SOPScorecard/SOPScorecard,,Arnold,4
 Operations,7,Country Ops KPIs,Operational KPIs by country,https://10ay.online.tableau.com/#/site/fnxintl/views/OperationalKPIs/OperationsKPIs,,,1
-S&OP,8,S&OP Scorecard,Monthly S&OP KPIs,https://10ay.online.tableau.com/#/site/fnxintl/views/SOPScorecard/SOPScorecard,,,1
