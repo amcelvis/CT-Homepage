@@ -1,25 +1,25 @@
 Section,Section Sort,Dashboard Name,Description,URL,Status,Owner,Sort Order
-Inventory,1,Stock Aging & DOH,Days on hand and aging buckets by SKU and country,https://YOUR-SERVER/#/views/REPLACE,,,1
-Inventory,1,SKU Availability by Country,Real-time availability across all 12 markets,https://YOUR-SERVER/#/views/REPLACE,,,2
-Inventory,1,Reorder Alerts,SKUs below reorder point with suggested PO quantities,https://YOUR-SERVER/#/views/REPLACE,NEW,,3
-Inventory,1,Slow-Moving & Obsolete Stock,Aging stock flagged for action,https://YOUR-SERVER/#/views/REPLACE,,,4
-Inventory,1,Inventory Valuation,Stock value by location and category,https://YOUR-SERVER/#/views/REPLACE,,,5
+Inventory,1,Agent Inventory,Days on hand and aging buckets by SKU and country,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/AgentInventory?:iid=2,,,1
+Inventory,1,Hub Inventory,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/HubInventory?:iid=2,,,2
+Inventory,1,Availability by Country,Real-time availability across all 9 markets,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/In-CountryStockAllocations?:iid=2,NEW,,3
+Inventory,1,Item Deep-Dive,Aging stock flagged for action,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ItemDeep-Dive?:iid=2,,,4
+Inventory,1,Inventory Valuation,Stock value by location and category,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/ExecutiveSummary?:iid=2,,,5
 Products,2,SHS Kit Performance,Sales and field performance by kit configuration,https://YOUR-SERVER/#/views/REPLACE,,,1
-Products,2,BOM & Component Tracker,Bill of materials and component sourcing status,https://YOUR-SERVER/#/views/REPLACE,,,2
+Products,2,BOM & Component Tracker,Bill of materials and component sourcing status,https://10ay.online.tableau.com/#/site/fnxintl/views/InventoryAuditReport/SalesProductDescription?:iid=2,,,2
 Products,2,Product Quality & Returns,Return rates and failure modes by product,https://YOUR-SERVER/#/views/REPLACE,,,3
 Products,2,New Product Pipeline,Launch readiness by market,https://YOUR-SERVER/#/views/REPLACE,,,4
 Products,2,Warranty Claims,Claims volume and resolution time,https://YOUR-SERVER/#/views/REPLACE,,,5
-Freight,3,Shipment Tracker - Sea & Air,Container and air freight in transit,https://YOUR-SERVER/#/views/REPLACE,,,1
-Freight,3,Freight Cost per Unit,Cost trends by lane and mode,https://YOUR-SERVER/#/views/REPLACE,,,2
+Freight,3,Shipment Tracker - Sea & Air,Container and air freight in transit,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/Freight,,,1
+Freight,3,Freight Costs Analysis,Cost trends by lane and mode,https://10ay.online.tableau.com/#/site/fnxintl/views/FreightsTCO/TCO?:iid=2,,,2
 Freight,3,Customs Clearance Status,Clearance pipeline and delays by port,https://YOUR-SERVER/#/views/REPLACE,DELAY,,3
 Freight,3,Carrier Performance,On-time performance by carrier,https://YOUR-SERVER/#/views/REPLACE,,,4
 Freight,3,Landed Cost Analysis,Full landed cost breakdown by SKU,https://YOUR-SERVER/#/views/REPLACE,,,5
 Warehouse,4,Inbound / Outbound Volumes,Daily throughput by hub,https://YOUR-SERVER/#/views/REPLACE,,,1
-Warehouse,4,Pick & Dispatch SLA,Order cycle time vs SLA,https://YOUR-SERVER/#/views/REPLACE,,,2
+Warehouse,4,Inventory Scorecard,Order cycle time vs SLA,https://YOUR-SERVER/#/views/REPLACE,,,2
 Warehouse,4,Space Utilisation,Capacity used by warehouse,https://YOUR-SERVER/#/views/REPLACE,,,3
-Warehouse,4,Cycle Count Accuracy,Inventory accuracy by location,https://YOUR-SERVER/#/views/REPLACE,,,4
-Warehouse,4,Hub Network Map,Geographic view of the hub network,https://YOUR-SERVER/#/views/REPLACE,,,5
-Tech Center,5,Repair Turnaround Time,TAT by fault type and center,https://YOUR-SERVER/#/views/REPLACE,,,1
+Warehouse,4,Warehouse Health,Inventory accuracy by location,https://YOUR-SERVER/#/views/REPLACE,,,4
+Warehouse,4,,,,,,5
+Tech Center,5,Throughput,TAT by fault type and center,https://10ay.online.tableau.com/#/site/fnxintl/views/Mzee_Connection/TechThroughput?:iid=3,,,1
 Tech Center,5,Fault Categories by Product,Top failure modes by product line,https://YOUR-SERVER/#/views/REPLACE,,,2
 Tech Center,5,Spare Parts Consumption,Parts usage vs stock,https://YOUR-SERVER/#/views/REPLACE,,,3
 Tech Center,5,Refurbishment Output,Units refurbished per week,https://YOUR-SERVER/#/views/REPLACE,,,4
@@ -33,4 +33,4 @@ Operations,7,S&OP Scorecard,Monthly S&OP KPIs,https://YOUR-SERVER/#/views/REPLAC
 Operations,7,Country Ops KPIs,Operational KPIs by country,https://YOUR-SERVER/#/views/REPLACE,,,2
 Operations,7,Last-Mile Delivery SLA,Delivery performance to customer,https://YOUR-SERVER/#/views/REPLACE,,,3
 Operations,7,Open Issues & Escalations,Active escalations and owners,https://YOUR-SERVER/#/views/REPLACE,,,4
-Operations,7,Cost-to-Serve,Cost-to-serve by market and channel,https://YOUR-SERVER/#/views/REPLACE,,,5
+S&OP,8,S&OP Scorecard,Monthly S&OP KPIs,https://YOUR-SERVER/#/views/REPLACE,,,1
