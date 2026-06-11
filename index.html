@@ -3,271 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supply Chain Control Tower</title>
+<title>Control Tower Menu</title>
 <style>
   :root{
     --purple:#5C1954; --purple-deep:#3A0E35; --purple-soft:#6E2163;
     --purple-tint:#F4EDF3; --purple-mid:#B79DB2;
     --yellow:#FDD000; --red:#E4003B;
-    --ink:#231F20; --grey:#6E6873; --grey-soft:#9A93A0;
-    --line:#E9E4EA; --bg:#F7F5F8; --card:#FFFFFF;
-    --shadow-sm:0 1px 2px rgba(58,14,53,.06);
-    --shadow-md:0 6px 18px -6px rgba(58,14,53,.16);
-    --r:10px;
+    --ink:#231F20; --grey:#6E6873;
+    --line:#E9E4EA; --card:#FFFFFF;
+    /* set PAGE_BG below to your Tableau dashboard background so the
+       area under the bar blends invisibly into the dashboard */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
   body{
     font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    background:
-      radial-gradient(1200px 400px at 85% -10%, rgba(92,25,84,.05), transparent 60%),
-      var(--bg);
-    color:var(--ink);
-    padding:20px;
-    -webkit-font-smoothing:antialiased;
+    color:var(--ink);-webkit-font-smoothing:antialiased;
   }
-  .canvas{max-width:1600px;margin:0 auto;}
 
-  /* ================= BANNER ================= */
-  .banner{
-    position:relative;overflow:hidden;
-    background:linear-gradient(120deg,var(--purple-deep) 0%,var(--purple) 55%,var(--purple-soft) 100%);
-    color:#fff;border-radius:var(--r) var(--r) 0 0;
-    padding:26px 32px 22px 32px;
+  /* ================= BAR ================= */
+  .bar{
+    display:flex;align-items:stretch;gap:2px;
+    background:linear-gradient(120deg,var(--purple-deep),var(--purple) 60%,var(--purple-soft));
+    height:52px;padding:0 14px 0 10px;
+    position:relative;z-index:10;
   }
-  /* solar glow + faint grid texture */
-  .banner::before{
-    content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(420px 220px at 88% 0%, rgba(253,208,0,.18), transparent 70%);
-  }
-  .banner::after{
-    content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;
-    background-image:radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px);
-    background-size:26px 26px;
-    mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
-    -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
-  }
-  .banner > *{position:relative;z-index:1;}
-  .banner-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;}
-  .brand{display:flex;align-items:center;gap:16px;}
+  .brand{display:flex;align-items:center;gap:10px;padding:0 14px 0 4px;flex-shrink:0;}
   .logo{
-    width:46px;height:46px;border-radius:10px;background:var(--yellow);
+    width:30px;height:30px;border-radius:7px;background:var(--yellow);
     display:flex;align-items:center;justify-content:center;
-    font-weight:800;color:var(--purple);font-size:19px;letter-spacing:-.5px;
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    font-weight:800;color:var(--purple);font-size:13px;
   }
-  .kicker{
-    font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-    color:var(--yellow);margin-bottom:5px;
-  }
-  .title h1{font-size:26px;font-weight:700;letter-spacing:-.3px;line-height:1.1;}
-  .title p{font-size:12.5px;color:#D9C9D6;margin-top:6px;}
-  .right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
-  .meta{text-align:right;font-size:11.5px;color:var(--purple-mid);line-height:1.6;}
-  .meta b{color:#fff;font-weight:600;}
-  .search{position:relative;}
-  .search input{
-    width:260px;padding:9px 14px 9px 34px;border:1px solid rgba(255,255,255,.18);
-    border-radius:30px;background:rgba(0,0,0,.25);color:#fff;
-    font-size:12.5px;font-family:inherit;transition:border-color .15s, background .15s;
-  }
-  .search input::placeholder{color:var(--purple-mid);}
-  .search input:focus{outline:none;border-color:var(--yellow);background:rgba(0,0,0,.35);}
-  .search::before{content:"⌕";position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--purple-mid);font-size:15px;}
+  .brand .t{color:#fff;font-size:13px;font-weight:700;letter-spacing:.2px;white-space:nowrap;}
+  .brand .t small{display:block;font-size:8.5px;font-weight:600;letter-spacing:1.8px;color:var(--yellow);text-transform:uppercase;}
 
-  /* live stats strip */
-  .stats{
-    display:flex;gap:0;margin-top:22px;
-    border-top:1px solid rgba(255,255,255,.14);
-    padding-top:16px;flex-wrap:wrap;
-  }
-  .stat{padding:0 28px;border-right:1px solid rgba(255,255,255,.12);}
-  .stat:first-child{padding-left:2px;}
-  .stat:last-child{border-right:none;}
-  .stat .v{font-size:21px;font-weight:700;color:#fff;line-height:1;}
-  .stat .v em{font-style:normal;color:var(--yellow);}
-  .stat .l{font-size:9.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--purple-mid);margin-top:5px;}
-
-  /* ================= GRID ================= */
-  .grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
-    background:linear-gradient(to bottom, #FBFAFC, var(--card) 120px);
-    border:1px solid var(--line);border-top:none;
-    border-radius:0 0 var(--r) var(--r);
-    padding:26px 32px 30px 32px;align-items:start;
-  }
-  @media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:640px){.grid{grid-template-columns:1fr;}.stat{padding:0 16px;}}
-
-  .section{
-    border:1px solid var(--line);border-radius:var(--r);
-    background:var(--card);overflow:hidden;
-    display:flex;flex-direction:column;
-    box-shadow:var(--shadow-sm);
-    transition:box-shadow .2s, transform .2s, border-color .2s;
-    animation:rise .45s cubic-bezier(.2,.7,.3,1) both;
-  }
-  .section:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:#DCD3DC;}
-  @keyframes rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-
-  .section-head{
-    padding:15px 16px 12px 16px;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    position:relative;
-  }
-  .section-head::after{ /* yellow signature underline */
-    content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
-    background:linear-gradient(90deg, var(--yellow) 0 56px, var(--line) 56px);
-  }
-  .section-head h2{
-    font-size:12.5px;font-weight:700;color:var(--purple);
-    text-transform:uppercase;letter-spacing:1.4px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .glyph{
-    width:28px;height:28px;border-radius:8px;flex-shrink:0;
-    background:var(--purple-tint);color:var(--purple);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .glyph svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-  .count{
-    font-size:10px;font-weight:700;color:var(--purple);
-    background:var(--purple-tint);border-radius:20px;padding:3px 9px;white-space:nowrap;
-  }
-
-  .links{list-style:none;padding:6px 0;}
-  .links a{
-    display:flex;align-items:center;gap:8px;
-    padding:9px 16px;font-size:13px;color:var(--ink);text-decoration:none;
-    border-left:3px solid transparent;
-    transition:background .13s,border-color .13s,padding-left .13s;
-  }
-  .links li + li a{border-top:1px solid #F3EFF4;}
-  .links a:hover,.links a:focus-visible{
-    background:var(--purple-tint);border-left-color:var(--purple);
-    padding-left:20px;outline:none;
-  }
-  .links a .nm{flex:1;letter-spacing:.1px;}
-  .links a .arrow{
-    color:var(--purple);opacity:0;font-size:13px;flex-shrink:0;
-    transform:translateX(-4px);transition:opacity .15s, transform .15s;
-  }
-  .links a:hover .arrow,.links a:focus-visible .arrow{opacity:1;transform:none;}
-  .flag{
-    font-size:8.5px;font-weight:800;color:#fff;background:var(--red);
-    border-radius:4px;padding:2px 6px;letter-spacing:.8px;flex-shrink:0;
-    box-shadow:0 1px 3px rgba(228,0,59,.35);
-  }
-  .toggle{
+  nav{display:flex;align-items:stretch;flex:1;overflow:visible;}
+  .item{position:relative;display:flex;}
+  .item > button{
     background:none;border:none;cursor:pointer;font-family:inherit;
-    font-size:11px;font-weight:600;color:var(--grey);
-    padding:9px 16px 13px 16px;text-align:left;letter-spacing:.3px;
-    transition:color .13s;
+    color:#E8DCE6;font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;
+    padding:0 14px;display:flex;align-items:center;gap:6px;
+    border-bottom:3px solid transparent;transition:color .13s, border-color .13s, background .13s;
   }
-  .toggle:hover{color:var(--purple);}
-  .hidden{display:none;}
+  .item > button .car{font-size:8px;transition:transform .15s;}
+  .item > button:hover,.item.open > button{
+    color:#fff;background:rgba(255,255,255,.06);border-bottom-color:var(--yellow);
+  }
+  .item.open > button .car{transform:rotate(180deg);}
+  .item > button .n{
+    font-size:9px;font-weight:700;background:rgba(255,255,255,.16);color:#fff;
+    border-radius:9px;padding:1px 6px;
+  }
 
-  .help{
-    background:linear-gradient(160deg, var(--purple-tint), #EFE3ED);
-    border:1px dashed var(--purple);
+  /* ================= DROPDOWN ================= */
+  .panel{
+    position:absolute;top:100%;left:0;min-width:280px;max-width:340px;
+    background:var(--card);border:1px solid var(--line);border-radius:0 0 10px 10px;
+    box-shadow:0 14px 30px -8px rgba(58,14,53,.28);
+    display:none;overflow:hidden;
   }
-  .help .section-head::after{background:linear-gradient(90deg, var(--purple) 0 56px, transparent 56px);}
-  .help .body{padding:14px 16px;font-size:12px;color:var(--grey);line-height:1.7;flex:1;}
-  .help .cta{
-    display:inline-block;margin-top:12px;
-    background:var(--purple);color:#fff;text-decoration:none;
-    font-size:11.5px;font-weight:700;letter-spacing:.4px;
-    padding:8px 14px;border-radius:30px;
-    box-shadow:0 3px 10px rgba(92,25,84,.3);
-    transition:background .15s, transform .15s;
+  .item.right .panel{left:auto;right:0;border-radius:0 0 10px 10px;}
+  .item.open .panel{display:block;animation:drop .16s ease-out;}
+  @keyframes drop{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:none;}}
+  .panel .ph{
+    padding:10px 14px 8px 14px;font-size:10px;font-weight:700;color:var(--purple);
+    text-transform:uppercase;letter-spacing:1.4px;
+    border-bottom:3px solid var(--yellow);
   }
-  .help .cta:hover{background:var(--purple-deep);transform:translateY(-1px);}
+  .panel ul{list-style:none;padding:4px 0;max-height:46vh;overflow-y:auto;}
+  .panel a{
+    display:flex;align-items:center;gap:8px;
+    padding:9px 14px;font-size:12.5px;color:var(--ink);text-decoration:none;
+    border-left:3px solid transparent;transition:background .12s,border-color .12s;
+  }
+  .panel li + li a{border-top:1px solid #F5F1F5;}
+  .panel a:hover,.panel a:focus-visible{background:var(--purple-tint);border-left-color:var(--purple);outline:none;}
+  .panel a .nm{flex:1;}
+  .panel a .arrow{color:var(--purple);opacity:0;font-size:12px;transform:translateX(-3px);transition:.14s;}
+  .panel a:hover .arrow{opacity:1;transform:none;}
+  .flag{font-size:8px;font-weight:800;color:#fff;background:var(--red);border-radius:3px;padding:2px 5px;letter-spacing:.7px;flex-shrink:0;}
+  .panel .desc{display:block;font-size:10.5px;color:var(--grey);margin-top:1px;}
 
-  .state{padding:48px;text-align:center;color:var(--grey);font-size:13px;grid-column:1/-1;line-height:1.8;}
-  .state b{color:var(--red);}
-  .footer{
-    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
-    padding:14px 6px 0 6px;font-size:11px;color:var(--grey-soft);
+  /* search + registry link, right side */
+  .tools{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .search{position:relative;display:flex;align-items:center;}
+  .search input{
+    width:170px;padding:6px 10px 6px 28px;border:1px solid rgba(255,255,255,.18);
+    border-radius:30px;background:rgba(0,0,0,.25);color:#fff;font-size:11.5px;font-family:inherit;
+    transition:width .2s, border-color .15s;
   }
-  .footer a{color:var(--purple);font-weight:600;text-decoration:none;}
-  .footer a:hover{text-decoration:underline;}
-  mark{background:var(--yellow);padding:0 2px;border-radius:2px;}
-  ::selection{background:var(--yellow);color:var(--ink);}
+  .search input:focus{outline:none;border-color:var(--yellow);width:220px;}
+  .search input::placeholder{color:var(--purple-mid);}
+  .search::before{content:"⌕";position:absolute;left:10px;color:var(--purple-mid);font-size:13px;}
+  .reg{
+    color:var(--yellow);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;
+    border:1px solid rgba(253,208,0,.45);border-radius:30px;padding:6px 12px;
+    transition:background .15s,color .15s;
+  }
+  .reg:hover{background:var(--yellow);color:var(--purple);}
+
+  /* search results panel (spans under bar) */
+  .results{
+    position:absolute;top:100%;right:14px;width:380px;max-width:92vw;
+    background:var(--card);border:1px solid var(--line);border-radius:0 0 10px 10px;
+    box-shadow:0 14px 30px -8px rgba(58,14,53,.28);display:none;z-index:9;
+  }
+  .results.show{display:block;animation:drop .16s ease-out;}
+  .results ul{list-style:none;padding:4px 0;max-height:50vh;overflow-y:auto;}
+  .results .ph{padding:9px 14px;font-size:10px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:1.2px;border-bottom:1px solid var(--line);}
+  .results a{display:block;padding:9px 14px;font-size:12.5px;color:var(--ink);text-decoration:none;}
+  .results li + li a{border-top:1px solid #F5F1F5;}
+  .results a:hover{background:var(--purple-tint);}
+  .results .sec{font-size:9.5px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:1px;}
+  .results .none{padding:16px 14px;font-size:12px;color:var(--grey);}
+  mark{background:var(--yellow);padding:0 1px;border-radius:2px;}
+
+  .err{padding:10px 16px;background:#FDECEF;color:var(--red);font-size:12px;border-bottom:1px solid #F5C6D0;}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
 </style>
 </head>
 <body>
-<div class="canvas">
 
-  <header class="banner">
-    <div class="banner-row">
-      <div class="brand">
-        <div class="logo">IEA</div>
-        <div class="title">
-          <div class="kicker">Ignite Energy Access</div>
-          <h1>Supply Chain Control Tower</h1>
-          <p id="subtitle">One home for every supply chain dashboard</p>
-        </div>
-      </div>
-      <div class="right">
-        <div class="search"><input id="q" type="search" placeholder="Search dashboards…" aria-label="Search dashboards"></div>
-        <div class="meta">Registry updated <b id="updated">…</b> · Owner: Africa Supply Chain & Ops</div>
-      </div>
-    </div>
-    <div class="stats" id="stats" hidden>
-      <div class="stat"><div class="v" id="s-total">–</div><div class="l">Dashboards</div></div>
-      <div class="stat"><div class="v" id="s-sections">–</div><div class="l">Sections</div></div>
-      <div class="stat"><div class="v" id="s-flagged">–</div><div class="l">Flagged</div></div>
-      <div class="stat"><div class="v"><em>1</em></div><div class="l">Link to share</div></div>
-    </div>
-  </header>
-
-  <main class="grid" id="grid">
-    <div class="state" id="loading">Loading the dashboard registry…</div>
-  </main>
-
-  <footer class="footer">
-    <span>Bookmark this page — it is the only link you need. All dashboards open in a new tab.</span>
-    <span>Issues or access requests: <a href="mailto:elvis.rawago@igniteaccess.com">elvis.rawago@igniteaccess.com</a></span>
-  </footer>
-
+<div class="bar" id="bar">
+  <div class="brand">
+    <div class="logo">IE</div>
+    <div class="t"><small>Control Tower</small>Dashboards</div>
+  </div>
+  <nav id="nav" aria-label="Dashboard sections"></nav>
+  <div class="tools">
+    <div class="search"><input id="q" type="search" placeholder="Search…" aria-label="Search dashboards" autocomplete="off"></div>
+    <a class="reg" id="reg" href="#" target="_blank" rel="noopener">+ Registry</a>
+  </div>
+  <div class="results" id="results"></div>
 </div>
+<div id="err"></div>
 
 <script>
 /* ============================ CONFIG ============================ */
 const REGISTRY_URL = "dashboard-registry.csv";
-const EDIT_URL     = "#";
-const MAX_VISIBLE  = 5;
+const EDIT_URL     = "#";          // GitHub edit URL for the CSV
+const PAGE_BG      = "#F6F4F7";    // match your Tableau dashboard background
+const SHOW_DESCRIPTIONS = true;     // descriptions under each link in dropdowns
 
-/* section icons (inline SVG, keyed by lowercase section name) */
-const ICONS = {
-  "inventory":  '<svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v9"/></svg>',
-  "products":   '<svg viewBox="0 0 24 24"><path d="M20.6 13.4L13.4 20.6a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>',
-  "freight":    '<svg viewBox="0 0 24 24"><path d="M1 9h13v8H1zM14 12h4l3 3v2h-7z"/><circle cx="6" cy="19" r="1.8"/><circle cx="17" cy="19" r="1.8"/></svg>',
-  "warehouse":  '<svg viewBox="0 0 24 24"><path d="M3 21V9l9-5 9 5v12"/><path d="M7 21v-7h10v7M7 17h10"/></svg>',
-  "tech center":'<svg viewBox="0 0 24 24"><path d="M14.7 6.3a4.5 4.5 0 00-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 006-6L14 13l-3-3z"/></svg>',
-  "sales":      '<svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>',
-  "operations": '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 00-2-1.2L14.2 3h-4l-.4 2.7a7 7 0 00-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 005 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 002 1.2l.4 2.7h4l.4-2.7a7 7 0 002-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>'
-};
-const FALLBACK_ICON = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>';
+document.body.style.background = PAGE_BG;
+document.getElementById("reg").href = EDIT_URL;
 
-/* ---- CSV parser (quoted fields, commas, CRLF) ---- */
+/* ---- CSV parser ---- */
 function parseCSV(text){
   const rows=[]; let row=[], field="", inQ=false;
   for(let i=0;i<text.length;i++){
     const c=text[i];
-    if(inQ){
-      if(c==='"'){ if(text[i+1]==='"'){field+='"';i++;} else inQ=false; }
-      else field+=c;
-    }else{
+    if(inQ){ if(c==='"'){ if(text[i+1]==='"'){field+='"';i++;} else inQ=false; } else field+=c; }
+    else{
       if(c==='"') inQ=true;
       else if(c===","){row.push(field);field="";}
       else if(c==="\n"||c==="\r"){
         if(c==="\r"&&text[i+1]==="\n")i++;
         row.push(field);field="";
-        if(row.some(v=>v.trim()!=="")) rows.push(row);
-        row=[];
-      }else field+=c;
+        if(row.some(v=>v.trim()!=="")) rows.push(row); row=[];
+      } else field+=c;
     }
   }
   if(field!==""||row.length){row.push(field);if(row.some(v=>v.trim()!==""))rows.push(row);}
@@ -281,88 +174,77 @@ const esc=s=>s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&q
 
 let ALL=[];
 
-function render(filter=""){
-  const grid=document.getElementById("grid");
-  const f=filter.trim().toLowerCase();
-  const items=f?ALL.filter(d=>(d["Dashboard Name"]+" "+d["Description"]+" "+d["Section"]).toLowerCase().includes(f)):ALL;
-
+function buildNav(){
   const sections=new Map();
-  for(const d of items){
+  for(const d of ALL){
     if(!sections.has(d.Section)) sections.set(d.Section,{sort:Number(d["Section Sort"]||999),links:[]});
     sections.get(d.Section).links.push(d);
   }
   const ordered=[...sections.entries()].sort((a,b)=>a[1].sort-b[1].sort);
+  const nav=document.getElementById("nav");
+  const half=Math.ceil(ordered.length/2);
 
-  let html=""; let idx=0;
-  for(const [name,sec] of ordered){
+  nav.innerHTML=ordered.map(([name,sec],i)=>{
     const links=sec.links.sort((a,b)=>Number(a["Sort Order"]||999)-Number(b["Sort Order"]||999));
-    const total=ALL.filter(d=>d.Section===name).length;
-    const expand=!f && links.length>MAX_VISIBLE;
-    const icon=ICONS[name.toLowerCase()]||FALLBACK_ICON;
-    const rows=links.map((d,i)=>{
-      const hideCls=(expand&&i>=MAX_VISIBLE)?" hidden extra":"";
+    const rows=links.map(d=>{
       const flag=d.Status?`<span class="flag">${esc(d.Status)}</span>`:"";
-      const nm=f?esc(d["Dashboard Name"]).replace(new RegExp("("+f.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"):esc(d["Dashboard Name"]);
-      return `<li class="lnk${hideCls}"><a href="${esc(d.URL)}" target="_blank" rel="noopener" title="${esc(d.Description||"")}">
-        <span class="nm">${nm}</span>${flag}<span class="arrow">→</span></a></li>`;
+      const desc=(SHOW_DESCRIPTIONS&&d.Description)?`<span class="desc">${esc(d.Description)}</span>`:"";
+      return `<li><a href="${esc(d.URL)}" target="_blank" rel="noopener">
+        <span class="nm">${esc(d["Dashboard Name"])}${desc}</span>${flag}<span class="arrow">→</span></a></li>`;
     }).join("");
-    html+=`<section class="section" style="animation-delay:${Math.min(idx*60,420)}ms">
-      <div class="section-head"><h2><span class="glyph">${icon}</span>${esc(name)}</h2><span class="count">${total}</span></div>
-      <ul class="links">${rows}</ul>
-      ${expand?`<button class="toggle" data-open="0">View all ${links.length} →</button>`:""}
-    </section>`;
-    idx++;
-  }
+    return `<div class="item${i>=half?" right":""}">
+      <button aria-expanded="false" aria-haspopup="true">${esc(name)} <span class="n">${links.length}</span> <span class="car">▼</span></button>
+      <div class="panel"><div class="ph">${esc(name)}</div><ul>${rows}</ul></div>
+    </div>`;
+  }).join("");
 
-  if(!html) html=`<div class="state">No dashboards match "<b style="color:var(--ink)">${esc(filter)}</b>".</div>`;
-
-  html+=`<section class="section help" style="animation-delay:${Math.min(idx*60,480)}ms">
-    <div class="section-head"><h2><span class="glyph">＋</span>Need a dashboard?</h2></div>
-    <div class="body">Built something new, or can't find what you need?
-      Add a row to the <b>Dashboard Registry</b> and it appears here automatically — no redesign needed.
-      <br><a class="cta" href="${esc(EDIT_URL)}" target="_blank" rel="noopener">Open the registry →</a></div>
-  </section>`;
-
-  grid.innerHTML=html;
-
-  grid.querySelectorAll(".toggle").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      const open=btn.dataset.open==="1";
-      btn.closest(".section").querySelectorAll(".extra").forEach(li=>li.classList.toggle("hidden",open));
-      btn.dataset.open=open?"0":"1";
-      const n=btn.closest(".section").querySelectorAll(".lnk").length;
-      btn.textContent=open?`View all ${n} →`:"Show less ↑";
+  /* open/close behavior: hover opens, click toggles, outside/Esc closes */
+  const items=[...nav.querySelectorAll(".item")];
+  const closeAll=ex=>items.forEach(it=>{ if(it!==ex){it.classList.remove("open");it.querySelector("button").setAttribute("aria-expanded","false");} });
+  items.forEach(it=>{
+    const btn=it.querySelector("button");
+    btn.addEventListener("click",e=>{
+      e.stopPropagation();
+      const open=it.classList.toggle("open");
+      btn.setAttribute("aria-expanded",open);
+      closeAll(it); hideResults();
     });
+    it.addEventListener("mouseenter",()=>{ closeAll(it); it.classList.add("open"); btn.setAttribute("aria-expanded","true"); hideResults(); });
+    it.addEventListener("mouseleave",()=>{ it.classList.remove("open"); btn.setAttribute("aria-expanded","false"); });
   });
+  document.addEventListener("click",()=>{ closeAll(); hideResults(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeAll(); hideResults(); document.getElementById("q").blur(); } });
 }
+
+/* ---- search ---- */
+const resultsEl=document.getElementById("results");
+function hideResults(){ resultsEl.classList.remove("show"); }
+function search(qv){
+  const f=qv.trim().toLowerCase();
+  if(!f){ hideResults(); return; }
+  const hits=ALL.filter(d=>(d["Dashboard Name"]+" "+d["Description"]+" "+d.Section).toLowerCase().includes(f)).slice(0,12);
+  const hl=s=>esc(s).replace(new RegExp("("+f.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>");
+  resultsEl.innerHTML=`<div class="ph">${hits.length} result${hits.length===1?"":"s"}</div>`+
+    (hits.length?`<ul>${hits.map(d=>`<li><a href="${esc(d.URL)}" target="_blank" rel="noopener">
+      <span class="sec">${esc(d.Section)}</span><br>${hl(d["Dashboard Name"])}</a></li>`).join("")}</ul>`
+    :`<div class="none">Nothing matches "${esc(qv)}".</div>`);
+  resultsEl.classList.add("show");
+}
+let t; const q=document.getElementById("q");
+q.addEventListener("input",e=>{clearTimeout(t);t=setTimeout(()=>search(e.target.value),120);});
+q.addEventListener("click",e=>e.stopPropagation());
 
 async function init(){
   try{
     const res=await fetch(REGISTRY_URL+(REGISTRY_URL.includes("?")?"&":"?")+"v="+Date.now());
     if(!res.ok) throw new Error("HTTP "+res.status);
     ALL=toObjects(parseCSV(await res.text())).filter(d=>d["Dashboard Name"]);
-    const lm=res.headers.get("last-modified");
-    document.getElementById("updated").textContent=lm?new Date(lm).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"}):"today";
-    const nSec=new Set(ALL.map(d=>d.Section)).size;
-    const nFlag=ALL.filter(d=>d.Status).length;
-    document.getElementById("subtitle").textContent="One home for every supply chain dashboard";
-    document.getElementById("s-total").textContent=ALL.length;
-    document.getElementById("s-sections").textContent=nSec;
-    document.getElementById("s-flagged").textContent=nFlag;
-    document.getElementById("stats").hidden=false;
-    render();
+    buildNav();
   }catch(e){
-    document.getElementById("grid").innerHTML=
-      `<div class="state"><b>Couldn't load the registry.</b><br>
-       Expected <code>${esc(REGISTRY_URL)}</code> next to this page (${esc(e.message)}).<br>
-       Check the file exists in the repo and the name matches exactly.</div>`;
+    document.getElementById("err").innerHTML=
+      `<div class="err">Couldn't load <b>${esc(REGISTRY_URL)}</b> (${esc(e.message)}) — check the file sits next to this page in the repo.</div>`;
   }
 }
-
-let t; document.getElementById("q").addEventListener("input",e=>{
-  clearTimeout(t); t=setTimeout(()=>render(e.target.value),120);
-});
-
 init();
 </script>
 </body>
