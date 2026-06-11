@@ -3,271 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supply Chain Control Tower — Home (Design Mockup)</title>
+<title>Supply Chain Control Tower</title>
 <style>
   :root{
-    --purple:#5C1954;
-    --purple-dark:#43103D;
-    --purple-tint:#F4EDF3;
-    --yellow:#FDD000;
-    --red:#E4003B;
-    --ink:#231F20;
-    --grey:#6E6873;
-    --line:#E6E1E6;
-    --bg:#F6F4F7;
-    --card:#FFFFFF;
+    --purple:#5C1954; --purple-dark:#43103D; --purple-tint:#F4EDF3;
+    --yellow:#FDD000; --red:#E4003B; --ink:#231F20; --grey:#6E6873;
+    --line:#E6E1E6; --bg:#F6F4F7; --card:#FFFFFF;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-    padding:24px;
-  }
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:18px;}
   .canvas{max-width:1600px;margin:0 auto;}
 
-  /* ===== TOP BANNER ===== */
-  .banner{
-    background:var(--purple);
-    color:#fff;
-    border-radius:10px 10px 0 0;
-    padding:22px 32px 0 32px;
-  }
-  .banner-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
-  .brand{display:flex;align-items:center;gap:14px;}
-  .logo{
-    width:42px;height:42px;border-radius:8px;
-    background:var(--yellow);
-    display:flex;align-items:center;justify-content:center;
-    font-weight:800;color:var(--purple);font-size:20px;letter-spacing:-1px;
-  }
-  .title h1{font-size:24px;font-weight:700;letter-spacing:.2px;}
-  .title p{font-size:12.5px;color:#D9C9D6;margin-top:2px;}
-  .meta{text-align:right;font-size:12px;color:#D9C9D6;line-height:1.5;}
+  /* ===== banner ===== */
+  .banner{background:var(--purple);color:#fff;border-radius:10px 10px 0 0;padding:18px 28px;}
+  .banner-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:13px;}
+  .logo{width:40px;height:40px;border-radius:8px;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--purple);font-size:18px;}
+  .title h1{font-size:22px;font-weight:700;}
+  .title p{font-size:12px;color:#D9C9D6;margin-top:2px;}
+  .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .meta{text-align:right;font-size:11.5px;color:#D9C9D6;line-height:1.5;}
   .meta b{color:var(--yellow);font-weight:600;}
-
-  /* KPI strip */
-  .kpis{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:rgba(255,255,255,.14);
-    border-radius:8px 8px 0 0;overflow:hidden;
-    margin-top:20px;
+  .search{position:relative;}
+  .search input{
+    width:230px;padding:8px 12px 8px 32px;border:none;border-radius:6px;
+    background:var(--purple-dark);color:#fff;font-size:12.5px;font-family:inherit;
   }
-  .kpi{background:var(--purple-dark);padding:14px 20px;}
-  .kpi .label{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:#C5AEC1;}
-  .kpi .value{font-size:24px;font-weight:700;margin-top:4px;color:#fff;}
-  .kpi .delta{font-size:11.5px;margin-top:2px;}
-  .up{color:#9BE8A8;} .down{color:#FF8AA6;}
+  .search input::placeholder{color:#B79DB2;}
+  .search input:focus{outline:2px solid var(--yellow);}
+  .search::before{content:"⌕";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#B79DB2;font-size:15px;}
 
-  /* ===== BODY GRID ===== */
+  /* ===== grid ===== */
   .grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-top:none;
-    border-radius:0 0 10px 10px;
-    padding:24px 32px 28px 32px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    background:var(--card);border:1px solid var(--line);border-top:none;
+    border-radius:0 0 10px 10px;padding:22px 28px 24px 28px;
+    align-items:start;
   }
   @media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:640px){.grid{grid-template-columns:1fr;}.kpis{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;}}
 
-  .section{
-    border:1px solid var(--line);
-    border-radius:8px;
-    background:var(--card);
-    overflow:hidden;
-    display:flex;flex-direction:column;
-  }
-  .section-head{
-    padding:14px 16px 12px 16px;
-    border-bottom:3px solid var(--yellow);
+  .section{border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden;display:flex;flex-direction:column;}
+  .section-head{padding:13px 15px 11px 15px;border-bottom:3px solid var(--yellow);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .section-head h2{font-size:13px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:1px;}
+  .count{font-size:10px;font-weight:600;color:var(--grey);background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:2px 8px;white-space:nowrap;}
+  .links{list-style:none;padding:5px 0;}
+  .links a{
     display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:8px 15px;font-size:13px;color:var(--ink);text-decoration:none;
+    border-left:3px solid transparent;transition:background .12s,border-color .12s;
   }
-  .section-head h2{
-    font-size:14px;font-weight:700;color:var(--purple);
-    text-transform:uppercase;letter-spacing:1px;
-    display:flex;align-items:center;gap:9px;
-  }
-  .glyph{
-    width:26px;height:26px;border-radius:6px;
-    background:var(--purple-tint);
-    display:flex;align-items:center;justify-content:center;
-    font-size:13px;color:var(--purple);
-  }
-  .count{
-    font-size:10.5px;font-weight:600;color:var(--grey);
-    background:var(--bg);border:1px solid var(--line);
-    border-radius:20px;padding:2px 8px;white-space:nowrap;
-  }
-  .links{list-style:none;padding:6px 0;flex:1;}
-  .links li a{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:9px 16px;
-    font-size:13px;color:var(--ink);text-decoration:none;
-    border-left:3px solid transparent;
-    transition:background .12s,border-color .12s;
-  }
-  .links li a:hover,.links li a:focus-visible{
-    background:var(--purple-tint);
-    border-left-color:var(--purple);
-    outline:none;
-  }
-  .links li a .arrow{color:var(--purple);opacity:0;font-size:12px;transition:opacity .12s;}
-  .links li a:hover .arrow,.links li a:focus-visible .arrow{opacity:1;}
-  .links li a .flag{
-    font-size:9.5px;font-weight:700;color:#fff;background:var(--red);
-    border-radius:3px;padding:1px 5px;margin-left:8px;letter-spacing:.5px;
-  }
-  .more{
-    padding:8px 16px 12px 16px;
-  }
-  .more a{font-size:11.5px;color:var(--grey);text-decoration:none;}
-  .more a:hover{color:var(--purple);text-decoration:underline;}
+  .links a:hover,.links a:focus-visible{background:var(--purple-tint);border-left-color:var(--purple);outline:none;}
+  .links a .arrow{color:var(--purple);opacity:0;font-size:12px;flex-shrink:0;transition:opacity .12s;}
+  .links a:hover .arrow,.links a:focus-visible .arrow{opacity:1;}
+  .links a .nm{flex:1;}
+  .flag{font-size:9px;font-weight:700;color:#fff;background:var(--red);border-radius:3px;padding:1px 5px;letter-spacing:.5px;flex-shrink:0;}
+  .toggle{background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;color:var(--grey);padding:8px 15px 11px 15px;text-align:left;}
+  .toggle:hover{color:var(--purple);text-decoration:underline;}
+  .hidden{display:none;}
 
-  /* footer */
-  .footer{
-    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    padding:14px 6px 0 6px;font-size:11.5px;color:var(--grey);
-  }
+  .help{background:var(--purple-tint);border:1px dashed var(--purple);border-radius:8px;display:flex;flex-direction:column;}
+  .help .section-head{border-bottom-color:var(--purple);}
+  .help .body{padding:13px 15px;font-size:12px;color:var(--grey);line-height:1.6;}
+  .help a{color:var(--purple);font-weight:700;text-decoration:none;}
+  .help a:hover{text-decoration:underline;}
+
+  .state{padding:40px;text-align:center;color:var(--grey);font-size:13px;grid-column:1/-1;line-height:1.7;}
+  .state b{color:var(--red);}
+  .footer{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 4px 0 4px;font-size:11px;color:var(--grey);}
   .footer a{color:var(--purple);font-weight:600;text-decoration:none;}
-  .footer a:hover{text-decoration:underline;}
+  mark{background:var(--yellow);padding:0 1px;border-radius:2px;}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
 </style>
 </head>
 <body>
 <div class="canvas">
 
-  <!-- BANNER -->
   <header class="banner">
     <div class="banner-row">
       <div class="brand">
         <div class="logo">IE</div>
         <div class="title">
           <h1>Supply Chain Control Tower</h1>
-          <p>One home for every supply chain dashboard · 12 countries</p>
+          <p id="subtitle">One home for every supply chain dashboard</p>
         </div>
       </div>
-      <div class="meta">
-        Data refreshed <b>Today 06:00 EAT</b><br>
-        Owner: Group Supply Chain · <span style="color:#fff">supplychain@igniteaccess.com</span>
+      <div class="right">
+        <div class="search"><input id="q" type="search" placeholder="Search dashboards…" aria-label="Search dashboards"></div>
+        <div class="meta">
+          Registry updated <b id="updated">…</b><br>
+          Owner: Group Supply Chain
+        </div>
       </div>
-    </div>
-
-    <div class="kpis">
-      <div class="kpi"><div class="label">OTIF — Last 30 Days</div><div class="value">94.2%</div><div class="delta up">▲ 1.1 pts vs prior</div></div>
-      <div class="kpi"><div class="label">Inventory Value</div><div class="value">$18.4M</div><div class="delta down">▼ 2.3% vs plan</div></div>
-      <div class="kpi"><div class="label">Open POs</div><div class="value">312</div><div class="delta up">▲ 26 this week</div></div>
-      <div class="kpi"><div class="label">Containers In Transit</div><div class="value">47</div><div class="delta">8 arriving this week</div></div>
     </div>
   </header>
 
-  <!-- SECTION GRID -->
-  <main class="grid">
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">▦</span>Inventory</h2><span class="count">7 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">Stock Aging &amp; DOH <span class="arrow">→</span></a></li>
-        <li><a href="#">SKU Availability by Country <span class="arrow">→</span></a></li>
-        <li><a href="#">Reorder Alerts <span class="flag">3 NEW</span> <span class="arrow">→</span></a></li>
-        <li><a href="#">Slow-Moving &amp; Obsolete Stock <span class="arrow">→</span></a></li>
-        <li><a href="#">Inventory Valuation <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 7 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">◉</span>Products</h2><span class="count">6 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">SHS Kit Performance <span class="arrow">→</span></a></li>
-        <li><a href="#">BOM &amp; Component Tracker <span class="arrow">→</span></a></li>
-        <li><a href="#">Product Quality &amp; Returns <span class="arrow">→</span></a></li>
-        <li><a href="#">New Product Pipeline <span class="arrow">→</span></a></li>
-        <li><a href="#">Warranty Claims <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 6 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">⛟</span>Freight</h2><span class="count">6 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">Shipment Tracker — Sea &amp; Air <span class="arrow">→</span></a></li>
-        <li><a href="#">Freight Cost per Unit <span class="arrow">→</span></a></li>
-        <li><a href="#">Customs Clearance Status <span class="flag">DELAY</span> <span class="arrow">→</span></a></li>
-        <li><a href="#">Carrier Performance <span class="arrow">→</span></a></li>
-        <li><a href="#">Landed Cost Analysis <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 6 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">⌂</span>Warehouse</h2><span class="count">5 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">Inbound / Outbound Volumes <span class="arrow">→</span></a></li>
-        <li><a href="#">Pick &amp; Dispatch SLA <span class="arrow">→</span></a></li>
-        <li><a href="#">Space Utilisation <span class="arrow">→</span></a></li>
-        <li><a href="#">Cycle Count Accuracy <span class="arrow">→</span></a></li>
-        <li><a href="#">Hub Network Map <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 5 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">⚙</span>Tech Center</h2><span class="count">5 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">Repair Turnaround Time <span class="arrow">→</span></a></li>
-        <li><a href="#">Fault Categories by Product <span class="arrow">→</span></a></li>
-        <li><a href="#">Spare Parts Consumption <span class="arrow">→</span></a></li>
-        <li><a href="#">Refurbishment Output <span class="arrow">→</span></a></li>
-        <li><a href="#">Swap Stock Levels <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 5 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">◔</span>Sales</h2><span class="count">8 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">Sales vs Supply Plan <span class="arrow">→</span></a></li>
-        <li><a href="#">Demand Forecast Accuracy <span class="arrow">→</span></a></li>
-        <li><a href="#">Country Sell-Through <span class="arrow">→</span></a></li>
-        <li><a href="#">Stock-Out Impact on Sales <span class="flag">2 NEW</span> <span class="arrow">→</span></a></li>
-        <li><a href="#">Channel Performance <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 8 →</a></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head"><h2><span class="glyph">⬡</span>Operations</h2><span class="count">6 dashboards</span></div>
-      <ul class="links">
-        <li><a href="#">S&amp;OP Scorecard <span class="arrow">→</span></a></li>
-        <li><a href="#">Country Ops KPIs <span class="arrow">→</span></a></li>
-        <li><a href="#">Last-Mile Delivery SLA <span class="arrow">→</span></a></li>
-        <li><a href="#">Open Issues &amp; Escalations <span class="arrow">→</span></a></li>
-        <li><a href="#">Cost-to-Serve <span class="arrow">→</span></a></li>
-      </ul>
-      <div class="more"><a href="#">View all 6 →</a></div>
-    </section>
-
-    <!-- 8th tile: help / governance -->
-    <section class="section" style="background:var(--purple-tint);border-style:dashed;">
-      <div class="section-head" style="border-bottom-color:var(--purple);"><h2><span class="glyph">＋</span>Need a dashboard?</h2></div>
-      <div style="padding:14px 16px;font-size:12.5px;color:var(--grey);line-height:1.6;flex:1;">
-        Can't find what you need, or built something new?
-        Register it in the <b style="color:var(--purple)">Dashboard Registry</b> and it appears here automatically on the next refresh — no redesign needed.
-        <br><br>
-        <a href="#" style="color:var(--purple);font-weight:700;text-decoration:none;">Open the registry →</a>
-      </div>
-    </section>
-
+  <main class="grid" id="grid">
+    <div class="state" id="loading">Loading the dashboard registry…</div>
   </main>
 
   <footer class="footer">
     <span>Bookmark this page — it is the only link you need. All dashboards open in a new tab.</span>
-    <span>Issues or access requests: <a href="#">supplychain@igniteaccess.com</a></span>
+    <span>Issues or access requests: <a href="mailto:supplychain@igniteaccess.com">supplychain@igniteaccess.com</a></span>
   </footer>
 
 </div>
+
+<script>
+/* ============================ CONFIG ============================
+   REGISTRY_URL : where the page reads its links from.
+     Default: dashboard-registry.csv in the same GitHub Pages repo.
+     Can be swapped for a published Google Sheet CSV URL
+     (File > Share > Publish to web > CSV) with no other changes.
+   EDIT_URL : where "Open the registry" sends people to add a row.
+     Point this at the CSV's edit page in your GitHub repo, e.g.
+     https://github.com/YOURORG/control-tower/edit/main/dashboard-registry.csv
+   MAX_VISIBLE : links shown per section before "View all".
+================================================================= */
+const REGISTRY_URL = "dashboard-registry.csv";
+const EDIT_URL     = "#";
+const MAX_VISIBLE  = 5;
+
+/* ---- minimal CSV parser (handles quoted fields, commas, CRLF) ---- */
+function parseCSV(text){
+  const rows=[]; let row=[], field="", inQ=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(inQ){
+      if(c==='"'){ if(text[i+1]==='"'){field+='"';i++;} else inQ=false; }
+      else field+=c;
+    }else{
+      if(c==='"') inQ=true;
+      else if(c===","){row.push(field);field="";}
+      else if(c==="\n"||c==="\r"){
+        if(c==="\r"&&text[i+1]==="\n")i++;
+        row.push(field);field="";
+        if(row.some(v=>v.trim()!=="")) rows.push(row);
+        row=[];
+      }else field+=c;
+    }
+  }
+  if(field!==""||row.length){row.push(field);if(row.some(v=>v.trim()!==""))rows.push(row);}
+  return rows;
+}
+
+function toObjects(rows){
+  const head=rows[0].map(h=>h.trim());
+  return rows.slice(1).map(r=>{
+    const o={}; head.forEach((h,i)=>o[h]=(r[i]||"").trim()); return o;
+  });
+}
+
+const esc=s=>s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+let ALL=[];
+
+function render(filter=""){
+  const grid=document.getElementById("grid");
+  const f=filter.trim().toLowerCase();
+  const items=f?ALL.filter(d=>(d["Dashboard Name"]+" "+d["Description"]+" "+d["Section"]).toLowerCase().includes(f)):ALL;
+
+  /* group by Section, ordered by Section Sort then registry order */
+  const sections=new Map();
+  for(const d of items){
+    if(!sections.has(d.Section)) sections.set(d.Section,{sort:Number(d["Section Sort"]||999),links:[]});
+    sections.get(d.Section).links.push(d);
+  }
+  const ordered=[...sections.entries()].sort((a,b)=>a[1].sort-b[1].sort);
+
+  let html="";
+  for(const [name,sec] of ordered){
+    const links=sec.links.sort((a,b)=>Number(a["Sort Order"]||999)-Number(b["Sort Order"]||999));
+    const total=ALL.filter(d=>d.Section===name).length;
+    const expand=!f && links.length>MAX_VISIBLE;
+    const rows=links.map((d,i)=>{
+      const hideCls=(expand&&i>=MAX_VISIBLE)?" hidden extra":"";
+      const flag=d.Status?`<span class="flag">${esc(d.Status)}</span>`:"";
+      const nm=f?esc(d["Dashboard Name"]).replace(new RegExp("("+f.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"):esc(d["Dashboard Name"]);
+      return `<li class="lnk${hideCls}"><a href="${esc(d.URL)}" target="_blank" rel="noopener" title="${esc(d.Description||"")}">
+        <span class="nm">${nm}</span>${flag}<span class="arrow">→</span></a></li>`;
+    }).join("");
+    html+=`<section class="section" data-sec="${esc(name)}">
+      <div class="section-head"><h2>${esc(name)}</h2><span class="count">${total} dashboard${total===1?"":"s"}</span></div>
+      <ul class="links">${rows}</ul>
+      ${expand?`<button class="toggle" data-open="0">View all ${links.length} →</button>`:""}
+    </section>`;
+  }
+
+  if(!html) html=`<div class="state">No dashboards match "<b style="color:var(--ink)">${esc(filter)}</b>".</div>`;
+
+  /* help tile always last */
+  html+=`<section class="section help">
+    <div class="section-head"><h2>＋ Need a dashboard?</h2></div>
+    <div class="body">Built something new, or can't find what you need?
+      Add a row to the <b>Dashboard Registry</b> and it appears here automatically — no redesign needed.
+      <br><br><a href="${esc(EDIT_URL)}" target="_blank" rel="noopener">Open the registry →</a></div>
+  </section>`;
+
+  grid.innerHTML=html;
+
+  grid.querySelectorAll(".toggle").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const open=btn.dataset.open==="1";
+      btn.closest(".section").querySelectorAll(".extra").forEach(li=>li.classList.toggle("hidden",open));
+      btn.dataset.open=open?"0":"1";
+      const n=btn.closest(".section").querySelectorAll(".lnk").length;
+      btn.textContent=open?`View all ${n} →`:"Show less ↑";
+    });
+  });
+}
+
+async function init(){
+  try{
+    const res=await fetch(REGISTRY_URL+(REGISTRY_URL.includes("?")?"&":"?")+"v="+Date.now());
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    ALL=toObjects(parseCSV(await res.text())).filter(d=>d["Dashboard Name"]);
+    const lm=res.headers.get("last-modified");
+    document.getElementById("updated").textContent=lm?new Date(lm).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"}):"today";
+    const countries=new Set(ALL.map(d=>d.Section)).size;
+    document.getElementById("subtitle").textContent=`One home for every supply chain dashboard · ${ALL.length} dashboards across ${countries} sections`;
+    render();
+  }catch(e){
+    document.getElementById("grid").innerHTML=
+      `<div class="state"><b>Couldn't load the registry.</b><br>
+       Expected <code>${esc(REGISTRY_URL)}</code> next to this page (${esc(e.message)}).<br>
+       Check the file exists in the repo and the name matches exactly.</div>`;
+  }
+}
+
+let t; document.getElementById("q").addEventListener("input",e=>{
+  clearTimeout(t); t=setTimeout(()=>render(e.target.value),120);
+});
+
+init();
+</script>
 </body>
 </html>
